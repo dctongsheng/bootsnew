@@ -79,12 +79,13 @@ export function ContactForm() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <Label htmlFor="phone">电话</Label>
+              <Label htmlFor="phone">电话 *</Label>
               <Input
                 id="phone"
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                required
                 placeholder="+86 xxx xxxx xxxx"
               />
             </div>

@@ -1,36 +1,12 @@
 import Link from 'next/link'
-import { ProductCard } from '@/components/product-card'
 import { ContactForm } from '@/components/contact-form'
+import { CatalogSection } from '@/components/catalog-section'
 import { prisma } from '@/lib/prisma'
-import { PRODUCT_CATEGORIES } from '@/lib/categories'
 
 export default async function Home() {
   const products = await prisma.product.findMany({
     orderBy: { createdAt: 'desc' }
   })
-
-  // Group products by category and subcategory
-  const groupedProducts = {
-    'men-boots': {
-      products: products.filter(p => p.category === 'men-boots'),
-      subCategories: {
-        'men-snow-boots': products.filter(p => p.subCategory === 'men-snow-boots'),
-        'men-hiking-boots': products.filter(p => p.subCategory === 'men-hiking-boots'),
-        'men-work-boots': products.filter(p => p.subCategory === 'men-work-boots'),
-      }
-    },
-    'women-boots': {
-      products: products.filter(p => p.category === 'women-boots'),
-      subCategories: {
-        'women-chelsea-boots': products.filter(p => p.subCategory === 'women-chelsea-boots'),
-        'women-snow-boots': products.filter(p => p.subCategory === 'women-snow-boots'),
-      }
-    },
-    'tactical-boots': {
-      products: products.filter(p => p.category === 'tactical-boots'),
-      subCategories: {}
-    }
-  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -122,114 +98,7 @@ export default async function Home() {
       </section>
 
       {/* Product Catalog */}
-      <section id="catalog" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">产品目录</h2>
-            <p className="text-xl text-gray-600">专业品质，满足各种需求</p>
-          </div>
-
-          {/* Men Boots */}
-          <div className="mb-20">
-            <h3 className="text-3xl font-bold text-gray-900 mb-8 pb-4 border-b-2 border-gray-200">
-              {PRODUCT_CATEGORIES['men-boots'].label}
-            </h3>
-            {Object.entries(groupedProducts['men-boots'].subCategories).map(([subCatKey, subCatProducts]) => {
-              const subCatLabel = PRODUCT_CATEGORIES['men-boots'].subCategories[subCatKey as any] || subCatKey
-              return (
-                <div key={subCatKey} className="mb-12">
-                  <h4 className="text-xl font-semibold text-gray-800 mb-6">
-                    {subCatLabel}
-                  </h4>
-                {subCatProducts.length > 0 ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {subCatProducts.map((product) => (
-                      <ProductCard key={product.id} product={product} />
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-gray-500 py-8">暂无该分类产品</p>
-                )}
-              </div>
-              )
-            })}
-            {groupedProducts['men-boots'].products.filter(p => !p.subCategory).length > 0 && (
-              <div className="mt-8">
-                <h4 className="text-lg font-semibold text-gray-600 mb-4">其他</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {groupedProducts['men-boots'].products.filter(p => !p.subCategory).map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Women Boots */}
-          <div className="mb-20">
-            <h3 className="text-3xl font-bold text-gray-900 mb-8 pb-4 border-b-2 border-gray-200">
-              {PRODUCT_CATEGORIES['women-boots'].label}
-            </h3>
-            {Object.entries(groupedProducts['women-boots'].subCategories).map(([subCatKey, subCatProducts]) => {
-              const subCatLabel = PRODUCT_CATEGORIES['women-boots'].subCategories[subCatKey as any] || subCatKey
-              return (
-                <div key={subCatKey} className="mb-12">
-                  <h4 className="text-xl font-semibold text-gray-800 mb-6">
-                    {subCatLabel}
-                  </h4>
-                {subCatProducts.length > 0 ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {subCatProducts.map((product) => (
-                      <ProductCard key={product.id} product={product} />
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-gray-500 py-8">暂无该分类产品</p>
-                )}
-              </div>
-              )
-            })}
-            {groupedProducts['women-boots'].products.filter(p => !p.subCategory).length > 0 && (
-              <div className="mt-8">
-                <h4 className="text-lg font-semibold text-gray-600 mb-4">其他</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {groupedProducts['women-boots'].products.filter(p => !p.subCategory).map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Tactical Boots */}
-          <div className="mb-20">
-            <h3 className="text-3xl font-bold text-gray-900 mb-8 pb-4 border-b-2 border-gray-200">
-              {PRODUCT_CATEGORIES['tactical-boots'].label}
-            </h3>
-            {groupedProducts['tactical-boots'].products.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {groupedProducts['tactical-boots'].products.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
-            ) : (
-              <p className="text-gray-500 py-8">暂无该分类产品</p>
-            )}
-          </div>
-
-          {products.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-gray-500 text-lg mb-8">暂无产品展示</p>
-              <Link
-                href="/admin"
-                className="inline-block px-8 py-4 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
-              >
-                前往管理后台添加产品
-              </Link>
-            </div>
-          )}
-        </div>
-      </section>
+      <CatalogSection allProducts={products} />
 
       {/* Capabilities Section */}
       <section id="capabilities" className="py-24 bg-gray-50">
