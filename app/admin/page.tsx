@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Plus, Pencil, Trash2, Home, LayoutGrid, Mail } from 'lucide-react'
+import { Plus, Pencil, Trash2, Home, LayoutGrid, Mail, Settings } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import {
   Dialog,
@@ -104,6 +104,12 @@ export default function AdminPage() {
                       {messageCount}
                     </span>
                   )}
+                </Button>
+              </Link>
+              <Link href="/admin/settings">
+                <Button variant="outline" size="default">
+                  <Settings className="w-4 h-4 mr-2" />
+                  设置
                 </Button>
               </Link>
               <Link href="/admin/products/new">

@@ -33,3 +33,9 @@ model Message {
   status      String   @default("new") // new, contacted, completed
   createdAt   DateTime @default(now())
 }
+
+model Settings {
+  id          String   @id @default("settings")
+  heroBackgroundImage String?  // Hero section background image URL
+  updatedAt   DateTime @updatedAt
+}

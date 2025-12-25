@@ -75,17 +75,36 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
   return (
     <div className="space-y-2">
       {value ? (
-        <div className="relative aspect-square w-full max-w-sm overflow-hidden rounded-lg border">
+        <div className="relative aspect-square w-full max-w-sm overflow-hidden rounded-lg border group cursor-pointer"
+          onClick={() => !isUploading && inputRef.current?.click()}
+        >
           <Image src={value} alt="Preview" fill className="object-cover" />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+            <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+              <Upload className="h-8 w-8 text-white" />
+              <p className="text-white text-xs mt-2 text-center">点击更换图片</p>
+            </div>
+          </div>
           <Button
             type="button"
             variant="destructive"
             size="icon"
             className="absolute top-2 right-2"
-            onClick={handleRemove}
+            onClick={(e) => {
+              e.stopPropagation()
+              handleRemove()
+            }}
           >
             <X className="h-4 w-4" />
           </Button>
+          <input
+            ref={inputRef}
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="hidden"
+            disabled={isUploading}
+          />
         </div>
       ) : (
         <div

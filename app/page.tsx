@@ -8,6 +8,18 @@ export default async function Home() {
     orderBy: { createdAt: 'desc' }
   })
 
+  // Get settings for hero background image
+  let settings = await prisma.settings.findUnique({
+    where: { id: 'settings' }
+  })
+
+  // Create default settings if not exists
+  if (!settings) {
+    settings = await prisma.settings.create({
+      data: { id: 'settings' }
+    })
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -33,6 +45,9 @@ export default async function Home() {
               <Link href="#contact" className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
                 联系我们
               </Link>
+              <Link href="/aboutus" className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
+                关于我们
+              </Link>
               <Link href="/admin" className="text-sm font-medium px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
                 管理
               </Link>
@@ -42,7 +57,17 @@ export default async function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <section 
+        className="relative pt-32 pb-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+        style={{
+          backgroundImage: settings.heroBackgroundImage 
+            ? `linear-gradient(to bottom right, rgba(17, 24, 39, 0.85), rgba(31, 41, 55, 0.85), rgba(17, 24, 39, 0.85)), url(${settings.heroBackgroundImage})`
+            : undefined,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-3xl">
             <p className="text-amber-400 font-medium tracking-wider text-sm mb-4">
@@ -247,6 +272,7 @@ export default async function Home() {
               <Link href="#catalog" className="hover:text-white transition-colors">目录</Link>
               <Link href="#capabilities" className="hover:text-white transition-colors">实力</Link>
               <Link href="#contact" className="hover:text-white transition-colors">联系</Link>
+              <Link href="/aboutus" className="hover:text-white transition-colors">关于</Link>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-500">

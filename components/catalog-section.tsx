@@ -27,11 +27,29 @@ const categoryItems = [
 
 export function CatalogSection({ allProducts }: CatalogSectionProps) {
   const [activeCategory, setActiveCategory] = useState('all')
+  const [activeSubCategory, setActiveSubCategory] = useState<string | null>(null)
 
-  // Filter products based on active category
-  const filteredProducts = activeCategory === 'all'
+  // Get subcategories for active category
+  const activeCategoryData = activeCategory !== 'all' 
+    ? PRODUCT_CATEGORIES[activeCategory as keyof typeof PRODUCT_CATEGORIES]
+    : null
+  const subCategories = activeCategoryData?.subCategories || {}
+
+  // Filter products based on active category and subcategory
+  let filteredProducts = activeCategory === 'all'
     ? allProducts
     : allProducts.filter(p => p.category === activeCategory)
+
+  // Further filter by subcategory if selected
+  if (activeSubCategory && activeCategory !== 'all') {
+    filteredProducts = filteredProducts.filter(p => p.subCategory === activeSubCategory)
+  }
+
+  // Reset subcategory when category changes
+  const handleCategoryChange = (categoryId: string) => {
+    setActiveCategory(categoryId)
+    setActiveSubCategory(null)
+  }
 
   return (
     <section id="catalog" className="py-16 bg-gray-50">
@@ -59,7 +77,7 @@ export function CatalogSection({ allProducts }: CatalogSectionProps) {
                   {categoryItems.map((item) => (
                     <li key={item.id}>
                       <button
-                        onClick={() => setActiveCategory(item.id)}
+                        onClick={() => handleCategoryChange(item.id)}
                         className={`w-full text-left px-4 py-3 rounded-md transition-colors ${
                           activeCategory === item.id
                             ? 'bg-amber-50 text-amber-700 font-semibold border-l-4 border-amber-700'
@@ -68,6 +86,25 @@ export function CatalogSection({ allProducts }: CatalogSectionProps) {
                       >
                         {item.label}
                       </button>
+                      {/* Show subcategories when this category is active */}
+                      {activeCategory === item.id && Object.keys(subCategories).length > 0 && (
+                        <ul className="mt-1 ml-4 space-y-1">
+                          {Object.entries(subCategories).map(([subKey, subLabel]) => (
+                            <li key={subKey}>
+                              <button
+                                onClick={() => setActiveSubCategory(activeSubCategory === subKey ? null : subKey)}
+                                className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
+                                  activeSubCategory === subKey
+                                    ? 'bg-amber-100 text-amber-800 font-medium'
+                                    : 'text-gray-600 hover:bg-gray-50'
+                                }`}
+                              >
+                                {subLabel}
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </li>
                   ))}
                 </ul>
