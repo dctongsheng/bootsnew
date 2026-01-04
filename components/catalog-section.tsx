@@ -12,8 +12,8 @@ interface CatalogSectionProps {
     price: number
     imageUrl: string
     featured?: boolean
-    category?: string
-    subCategory?: string
+    categories?: string
+    subCategories?: string
   }>
 }
 
@@ -25,12 +25,23 @@ const categoryItems = [
   { id: 'tactical-boots', label: 'Tactical Boots' },
 ]
 
+// Helper function to parse JSON arrays
+const parseCategories = (categoriesStr?: string): string[] => {
+  if (!categoriesStr) return []
+  try {
+    const parsed = JSON.parse(categoriesStr)
+    return Array.isArray(parsed) ? parsed : []
+  } catch {
+    return []
+  }
+}
+
 export function CatalogSection({ allProducts }: CatalogSectionProps) {
   const [activeCategory, setActiveCategory] = useState('all')
   const [activeSubCategory, setActiveSubCategory] = useState<string | null>(null)
 
   // Get subcategories for active category
-  const activeCategoryData = activeCategory !== 'all' 
+  const activeCategoryData = activeCategory !== 'all'
     ? PRODUCT_CATEGORIES[activeCategory as keyof typeof PRODUCT_CATEGORIES]
     : null
   const subCategories = activeCategoryData?.subCategories || {}
@@ -38,11 +49,17 @@ export function CatalogSection({ allProducts }: CatalogSectionProps) {
   // Filter products based on active category and subcategory
   let filteredProducts = activeCategory === 'all'
     ? allProducts
-    : allProducts.filter(p => p.category === activeCategory)
+    : allProducts.filter(p => {
+        const productCategories = parseCategories(p.categories)
+        return productCategories.includes(activeCategory)
+      })
 
   // Further filter by subcategory if selected
   if (activeSubCategory && activeCategory !== 'all') {
-    filteredProducts = filteredProducts.filter(p => p.subCategory === activeSubCategory)
+    filteredProducts = filteredProducts.filter(p => {
+      const productSubCategories = parseCategories(p.subCategories)
+      return productSubCategories.includes(activeSubCategory)
+    })
   }
 
   // Reset subcategory when category changes

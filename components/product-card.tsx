@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ProductInquiryModal } from '@/components/product-inquiry-modal'
+import { PRODUCT_CATEGORIES } from '@/lib/categories'
 
 interface ProductCardProps {
   product: {
@@ -14,11 +15,25 @@ interface ProductCardProps {
     price: number
     imageUrl: string
     featured?: boolean
+    categories?: string
+    subCategories?: string
+  }
+}
+
+// Helper function to parse JSON arrays
+const parseCategories = (categoriesStr?: string): string[] => {
+  if (!categoriesStr) return []
+  try {
+    const parsed = JSON.parse(categoriesStr)
+    return Array.isArray(parsed) ? parsed : []
+  } catch {
+    return []
   }
 }
 
 export function ProductCard({ product }: ProductCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const categories = parseCategories(product.categories)
 
   return (
     <>
@@ -41,6 +56,23 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
 
           <div className="flex-1 flex flex-col px-2 pt-4 pb-6">
+            {/* Category tags */}
+            {categories.length > 0 && (
+              <div className="flex gap-1 flex-wrap mb-2">
+                {categories.map(cat => {
+                  const categoryData = PRODUCT_CATEGORIES[cat as keyof typeof PRODUCT_CATEGORIES]
+                  return (
+                    <span
+                      key={cat}
+                      className="bg-amber-100 text-amber-700 px-2 py-0.5 rounded text-xs font-medium"
+                    >
+                      {categoryData?.label}
+                    </span>
+                  )
+                })}
+              </div>
+            )}
+
             <h3 className="font-semibold text-lg mb-2 text-gray-900 group-hover:text-amber-600 transition-colors line-clamp-1">
               {product.name}
             </h3>

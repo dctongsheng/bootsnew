@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import { ContactForm } from '@/components/contact-form'
 import { CatalogSection } from '@/components/catalog-section'
+import { MobileNav } from '@/components/mobile-nav'
 import { prisma } from '@/lib/prisma'
 
 export default async function Home() {
   const products = await prisma.product.findMany({
-    orderBy: { createdAt: 'desc' }
+    orderBy: { order: 'asc' }
   })
 
   // Get settings for hero background image
@@ -32,7 +33,9 @@ export default async function Home() {
               </Link>
               <p className="text-xs text-gray-500">专业的鞋材制造商</p>
             </div>
-            <div className="flex items-center gap-8">
+
+            {/* Desktop Nav */}
+            <div className="hidden lg:flex items-center gap-8">
               <Link href="/" className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
                 首页
               </Link>
@@ -52,15 +55,20 @@ export default async function Home() {
                 管理
               </Link>
             </div>
+
+            {/* Mobile Nav */}
+            <div className="lg:hidden">
+              <MobileNav />
+            </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section 
+      <section
         className="relative pt-32 pb-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
         style={{
-          backgroundImage: settings.heroBackgroundImage 
+          backgroundImage: settings.heroBackgroundImage
             ? `linear-gradient(to bottom right, rgba(17, 24, 39, 0.85), rgba(31, 41, 55, 0.85), rgba(17, 24, 39, 0.85)), url(${settings.heroBackgroundImage})`
             : undefined,
           backgroundSize: 'cover',
