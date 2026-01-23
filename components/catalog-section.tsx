@@ -44,7 +44,7 @@ export function CatalogSection({ allProducts }: CatalogSectionProps) {
   const activeCategoryData = activeCategory !== 'all'
     ? PRODUCT_CATEGORIES[activeCategory as keyof typeof PRODUCT_CATEGORIES]
     : null
-  const subCategories = activeCategoryData?.subCategories || {}
+  const subCategories = (activeCategoryData?.subCategories || {}) as Record<string, string>
 
   // Filter products based on active category and subcategory
   let filteredProducts = activeCategory === 'all'
