@@ -31,10 +31,9 @@ function LoginForm() {
       const data = await response.json()
 
       if (response.ok) {
-        // Redirect to admin page or the original destination
+        // Use window.location.href for full page reload to ensure cookie is set
         const redirect = searchParams.get('redirect') || '/admin'
-        router.push(redirect)
-        router.refresh()
+        window.location.href = redirect
       } else {
         setError(data.error || 'Invalid password')
       }
