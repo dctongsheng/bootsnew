@@ -190,7 +190,7 @@ export default async function Home() {
                     </div>
                     <div>
                       <div className="font-medium text-gray-900">Email</div>
-                      <div className="text-gray-600">info@yourfactory.com</div>
+                      <div className="text-gray-600">lijuncao50@gmail.com</div>
                     </div>
                   </div>
 
@@ -201,8 +201,8 @@ export default async function Home() {
                       </svg>
                     </div>
                     <div>
-                      <div className="font-medium text-gray-900">Phone</div>
-                      <div className="text-gray-600">+86 xxx xxxx xxxx</div>
+                      <div className="font-medium text-gray-900">Tel</div>
+                      <div className="text-gray-600">(01) 438 410 0886</div>
                     </div>
                   </div>
 
@@ -215,7 +215,7 @@ export default async function Home() {
                     </div>
                     <div>
                       <div className="font-medium text-gray-900">Address</div>
-                      <div className="text-gray-600">China · Guangdong Province · Dongguan City</div>
+                      <div className="text-gray-600">280 Boul Rene-Levesque West, Montreal, QC, H2Z 0B5</div>
                     </div>
                   </div>
                 </div>
