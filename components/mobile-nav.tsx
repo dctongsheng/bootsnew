@@ -17,12 +17,11 @@ export function MobileNav() {
   const [open, setOpen] = useState(false)
 
   const navItems = [
-    { href: '/', label: '首页' },
-    { href: '#catalog', label: '产品目录' },
-    { href: '#capabilities', label: '工厂实力' },
-    { href: '#contact', label: '联系我们' },
-    { href: '/aboutus', label: '关于我们' },
-    { href: '/admin', label: '管理' },
+    { href: '/', label: 'Home' },
+    { href: '#catalog', label: 'Product Catalog' },
+    { href: '#capabilities', label: 'Capabilities' },
+    { href: '#contact', label: 'Contact Us' },
+    { href: '/aboutus', label: 'About Us' },
   ]
 
   const handleNavClick = () => {
@@ -34,14 +33,14 @@ export function MobileNav() {
       <SheetTrigger asChild className="lg:hidden">
         <Button variant="ghost" size="icon" className="h-10 w-10">
           <Menu className="h-6 w-6" />
-          <span className="sr-only">打开菜单</span>
+          <span className="sr-only">Open menu</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="w-80">
         <SheetHeader>
-          <SheetTitle>导航菜单</SheetTitle>
+          <SheetTitle>Navigation Menu</SheetTitle>
           <SheetDescription>
-            选择一个页面进行访问
+            Select a page to visit
           </SheetDescription>
         </SheetHeader>
         <nav className="flex flex-col gap-2 mt-8">

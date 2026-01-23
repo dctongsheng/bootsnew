@@ -29,30 +29,27 @@ export default async function Home() {
           <div className="flex items-center justify-between h-20">
             <div>
               <Link href="/" className="text-2xl font-bold tracking-tight text-gray-900">
-                鞋材工厂
+                LANRTTDUN
               </Link>
-              <p className="text-xs text-gray-500">专业的鞋材制造商</p>
+              <p className="text-xs text-gray-500">Premium Materials · OEM / ODM Solutions</p>
             </div>
 
             {/* Desktop Nav */}
             <div className="hidden lg:flex items-center gap-8">
               <Link href="/" className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
-                首页
+                Home
               </Link>
               <Link href="#catalog" className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
-                产品目录
+                Product Catalog
               </Link>
               <Link href="#capabilities" className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
-                工厂实力
+                Capabilities
               </Link>
               <Link href="#contact" className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
-                联系我们
+                Contact Us
               </Link>
               <Link href="/aboutus" className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
-                关于我们
-              </Link>
-              <Link href="/admin" className="text-sm font-medium px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
-                管理
+                About Us
               </Link>
             </div>
 
@@ -78,30 +75,26 @@ export default async function Home() {
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-amber-400 font-medium tracking-wider text-sm mb-4">
-              专业鞋材制造商 | OEM/ODM 服务
-            </p>
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              优质鞋材
+              Superior Materials
               <br />
-              <span className="text-amber-400">智能制造</span>
+              <span className="text-amber-400">Advanced Manufacturing</span>
             </h1>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              我们专注于高品质鞋材的生产与制造，为全球品牌提供OEM/ODM解决方案。
-              严选材料，精工制造，为您打造卓越产品。
+              We are a professional footwear manufacturer specializing in shoes made with premium materials. We provide OEM and ODM services for global brands, focusing on material quality, durability, and craftsmanship.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="#catalog"
                 className="px-8 py-4 bg-amber-500 text-white rounded-lg font-medium hover:bg-amber-600 transition-colors"
               >
-                浏览产品目录
+                Browse Catalog
               </Link>
               <Link
                 href="#contact"
                 className="px-8 py-4 border-2 border-white text-white rounded-lg font-medium hover:bg-white hover:text-gray-900 transition-colors"
               >
-                联系我们
+                Contact Us
               </Link>
             </div>
           </div>
@@ -112,19 +105,19 @@ export default async function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-4xl font-bold text-white mb-2">20+</div>
-              <div className="text-gray-400 text-sm">年行业经验</div>
+              <div className="text-gray-400 text-sm">Years of Experience</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-white mb-2">100+</div>
-              <div className="text-gray-400 text-sm">合作伙伴</div>
+              <div className="text-gray-400 text-sm">Partners</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-white mb-2">500万+</div>
-              <div className="text-gray-400 text-sm">年产量（双）</div>
+              <div className="text-gray-400 text-sm">Annual Production (Pairs)</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-white mb-2">ISO 9001</div>
-              <div className="text-gray-400 text-sm">质量认证</div>
+              <div className="text-gray-400 text-sm">Quality Certification</div>
             </div>
           </div>
         </div>
@@ -137,8 +130,8 @@ export default async function Home() {
       <section id="capabilities" className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">为什么选择我们</h2>
-            <p className="text-xl text-gray-600">专业的制造能力，可靠的合作伙伴</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Us</h2>
+            <p className="text-xl text-gray-600">Professional Manufacturing Capabilities, Reliable Partner</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -148,8 +141,8 @@ export default async function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">品质保证</h3>
-              <p className="text-gray-600">通过 ISO 9001 质量管理体系认证，每道工序严格把控</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Quality Assurance</h3>
+              <p className="text-gray-600">ISO 9001 certified quality management system with strict control at every stage</p>
             </div>
 
             <div className="text-center p-8 bg-white rounded-2xl shadow-sm">
@@ -158,8 +151,8 @@ export default async function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">快速响应</h3>
-              <p className="text-gray-600">从设计到生产，7天快速打样，高效满足您的需求</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Fast Response</h3>
+              <p className="text-gray-600">From design to production, 7-day rapid prototyping to efficiently meet your needs</p>
             </div>
 
             <div className="text-center p-8 bg-white rounded-2xl shadow-sm">
@@ -168,8 +161,8 @@ export default async function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">价格优势</h3>
-              <p className="text-gray-600">厂家直销，没有中间商，为您提供最具竞争力的价格</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Competitive Pricing</h3>
+              <p className="text-gray-600">Direct from manufacturer, no middlemen, providing the most competitive prices</p>
             </div>
           </div>
         </div>
@@ -179,15 +172,15 @@ export default async function Home() {
       <section id="contact" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">联系我们</h2>
-            <p className="text-xl text-gray-600">如有任何疑问或需求，欢迎随时与我们联系</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
+            <p className="text-xl text-gray-600">If you have any questions or needs, please feel free to contact us</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact Info */}
             <div className="space-y-8">
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">联系方式</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Contact Information</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -196,7 +189,7 @@ export default async function Home() {
                       </svg>
                     </div>
                     <div>
-                      <div className="font-medium text-gray-900">邮箱</div>
+                      <div className="font-medium text-gray-900">Email</div>
                       <div className="text-gray-600">info@yourfactory.com</div>
                     </div>
                   </div>
@@ -208,7 +201,7 @@ export default async function Home() {
                       </svg>
                     </div>
                     <div>
-                      <div className="font-medium text-gray-900">电话</div>
+                      <div className="font-medium text-gray-900">Phone</div>
                       <div className="text-gray-600">+86 xxx xxxx xxxx</div>
                     </div>
                   </div>
@@ -221,39 +214,39 @@ export default async function Home() {
                       </svg>
                     </div>
                     <div>
-                      <div className="font-medium text-gray-900">地址</div>
-                      <div className="text-gray-600">中国 · 广东省 · 东莞市</div>
+                      <div className="font-medium text-gray-900">Address</div>
+                      <div className="text-gray-600">China · Guangdong Province · Dongguan City</div>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">服务优势</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Service Advantages</h3>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-3">
                     <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-gray-600">OEM/ODM 定制服务</span>
+                    <span className="text-gray-600">OEM/ODM Customization Services</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-gray-600">低起订量支持</span>
+                    <span className="text-gray-600">Low Minimum Order Quantity Support</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-gray-600">快速打样交付</span>
+                    <span className="text-gray-600">Fast Prototyping & Delivery</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-gray-600">全程质量跟踪</span>
+                    <span className="text-gray-600">Full Quality Tracking</span>
                   </li>
                 </ul>
               </div>
@@ -272,19 +265,19 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-6 md:mb-0">
-              <h3 className="text-xl font-bold mb-2">鞋材工厂</h3>
-              <p className="text-gray-400 text-sm">专业的鞋材制造商 | OEM/ODM 服务</p>
+              <h3 className="text-xl font-bold mb-2">LANRTTDUN</h3>
+              <p className="text-gray-400 text-sm">Premium Materials · OEM / ODM Solutions</p>
             </div>
             <div className="flex gap-6 text-sm text-gray-400">
-              <Link href="/" className="hover:text-white transition-colors">首页</Link>
-              <Link href="#catalog" className="hover:text-white transition-colors">目录</Link>
-              <Link href="#capabilities" className="hover:text-white transition-colors">实力</Link>
-              <Link href="#contact" className="hover:text-white transition-colors">联系</Link>
-              <Link href="/aboutus" className="hover:text-white transition-colors">关于</Link>
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <Link href="#catalog" className="hover:text-white transition-colors">Catalog</Link>
+              <Link href="#capabilities" className="hover:text-white transition-colors">Capabilities</Link>
+              <Link href="#contact" className="hover:text-white transition-colors">Contact</Link>
+              <Link href="/aboutus" className="hover:text-white transition-colors">About</Link>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-500">
-            <p>&copy; 2025 鞋材工厂. All rights reserved.</p>
+            <p>&copy; 2025 LANRTTDUN. All rights reserved.</p>
           </div>
         </div>
       </footer>
