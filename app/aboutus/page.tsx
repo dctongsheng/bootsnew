@@ -9,9 +9,9 @@ export default function AboutUsPage() {
           <div className="flex items-center justify-between h-20">
             <div>
               <Link href="/" className="text-2xl font-bold tracking-tight text-gray-900">
-                鞋材工厂
+                LANRTTDUN
               </Link>
-              <p className="text-xs text-gray-500">专业的鞋材制造商</p>
+              <p className="text-xs text-gray-500">Premium Materials · OEM / ODM Solutions</p>
             </div>
             <div className="flex items-center gap-8">
               <Link href="/" className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
