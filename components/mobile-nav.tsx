@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -15,6 +15,11 @@ import {
 
 export function MobileNav() {
   const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const navItems = [
     { href: '/', label: 'Home' },
@@ -26,6 +31,15 @@ export function MobileNav() {
 
   const handleNavClick = () => {
     setOpen(false)
+  }
+
+  if (!mounted) {
+    return (
+      <Button variant="ghost" size="icon" className="h-10 w-10 lg:hidden" disabled>
+        <Menu className="h-6 w-6" />
+        <span className="sr-only">Open menu</span>
+      </Button>
+    )
   }
 
   return (

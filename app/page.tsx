@@ -65,9 +65,9 @@ export default async function Home() {
       <section
         className="relative pt-32 pb-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
         style={{
-          backgroundImage: settings.heroBackgroundImage
-            ? `linear-gradient(to bottom right, rgba(17, 24, 39, 0.85), rgba(31, 41, 55, 0.85), rgba(17, 24, 39, 0.85)), url(${settings.heroBackgroundImage})`
-            : undefined,
+          ...(settings.heroBackgroundImage && {
+            backgroundImage: `linear-gradient(to bottom right, rgba(17, 24, 39, 0.85), rgba(31, 41, 55, 0.85), rgba(17, 24, 39, 0.85)), url(${settings.heroBackgroundImage})`,
+          }),
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
