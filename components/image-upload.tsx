@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { Upload, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -13,6 +13,8 @@ interface ImageUploadProps {
 export function ImageUpload({ value, onChange }: ImageUploadProps) {
   const [isUploading, setIsUploading] = useState(false)
   const [dragActive, setDragActive] = useState(false)
+  const [imageError, setImageError] = useState(false)
+  const [imageLoading, setImageLoading] = useState(true)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleUpload = async (file: File) => {
@@ -31,6 +33,9 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
       }
 
       const data = await response.json()
+      // Reset image states when new image is uploaded
+      setImageError(false)
+      setImageLoading(true)
       onChange(data.url)
     } catch (error) {
       console.error('Upload error:', error)
@@ -70,7 +75,30 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
 
   const handleRemove = () => {
     onChange('')
+    setImageError(false)
+    setImageLoading(true)
   }
+
+  const handleImageError = () => {
+    setImageError(true)
+    setImageLoading(false)
+  }
+
+  const handleImageLoad = () => {
+    setImageLoading(false)
+    setImageError(false)
+  }
+
+  // Reset image states when value changes
+  useEffect(() => {
+    if (value) {
+      setImageError(false)
+      setImageLoading(true)
+    } else {
+      setImageError(false)
+      setImageLoading(false)
+    }
+  }, [value])
 
   return (
     <div className="space-y-2">
@@ -78,7 +106,32 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
         <div className="relative aspect-square w-full max-w-sm overflow-hidden rounded-lg border group cursor-pointer"
           onClick={() => !isUploading && inputRef.current?.click()}
         >
-          <Image src={value} alt="Preview" fill className="object-cover" />
+          {imageError ? (
+            <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+              <div className="text-center">
+                <Upload className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+                <p className="text-sm text-gray-500">图片加载失败</p>
+                <p className="text-xs text-gray-400 mt-1">点击重新上传</p>
+              </div>
+            </div>
+          ) : (
+            <>
+              {imageLoading && (
+                <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+                  <div className="w-8 h-8 border-4 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              )}
+              <Image 
+                src={value} 
+                alt="Preview" 
+                fill 
+                className="object-cover"
+                unoptimized={true}
+                onError={handleImageError}
+                onLoad={handleImageLoad}
+              />
+            </>
+          )}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
             <div className="opacity-0 group-hover:opacity-100 transition-opacity">
               <Upload className="h-8 w-8 text-white" />
