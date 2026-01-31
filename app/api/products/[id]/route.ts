@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { PRODUCT_CATEGORIES } from '@/lib/categories'
+import { deleteFromR2, isR2Url } from '@/lib/r2'
 
 export async function GET(
   request: NextRequest,
@@ -75,6 +76,14 @@ export async function PUT(
       }
     }
 
+    // Delete old R2 image if imageUrl is changing
+    if (imageUrl) {
+      const existing = await prisma.product.findUnique({ where: { id }, select: { imageUrl: true } })
+      if (existing?.imageUrl && existing.imageUrl !== imageUrl && isR2Url(existing.imageUrl)) {
+        deleteFromR2(existing.imageUrl).catch((err) => console.error('Failed to delete old R2 image:', err))
+      }
+    }
+
     const product = await prisma.product.update({
       where: { id },
       data: {
@@ -101,6 +110,10 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params
+    const product = await prisma.product.findUnique({ where: { id }, select: { imageUrl: true } })
+    if (product?.imageUrl && isR2Url(product.imageUrl)) {
+      deleteFromR2(product.imageUrl).catch((err) => console.error('Failed to delete R2 image:', err))
+    }
     await prisma.product.delete({
       where: { id }
     })

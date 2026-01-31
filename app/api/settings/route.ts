@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { deleteFromR2, isR2Url } from '@/lib/r2'
 
 // GET settings
 export async function GET() {
@@ -40,10 +41,14 @@ export async function PUT(request: NextRequest) {
         }
       })
     } else {
+      const newHeroImage = heroBackgroundImage !== undefined ? heroBackgroundImage : settings.heroBackgroundImage
+      if (heroBackgroundImage !== undefined && settings.heroBackgroundImage && settings.heroBackgroundImage !== heroBackgroundImage && isR2Url(settings.heroBackgroundImage)) {
+        deleteFromR2(settings.heroBackgroundImage).catch((err) => console.error('Failed to delete old R2 hero image:', err))
+      }
       settings = await prisma.settings.update({
         where: { id: 'settings' },
         data: {
-          heroBackgroundImage: heroBackgroundImage !== undefined ? heroBackgroundImage : settings.heroBackgroundImage
+          heroBackgroundImage: newHeroImage !== undefined ? newHeroImage : settings.heroBackgroundImage
         }
       })
     }

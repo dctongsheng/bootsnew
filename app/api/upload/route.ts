@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile } from 'fs/promises'
 import path from 'path'
 import { v4 as uuidv4 } from 'uuid'
+import { uploadToR2 } from '@/lib/r2'
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,22 +21,18 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Generate unique filename
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
     const ext = path.extname(file.name)
     const filename = `${uuidv4()}${ext}`
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads')
-    const filepath = path.join(uploadDir, filename)
+    const key = `uploads/${filename}`
 
-    // Write file
-    await writeFile(filepath, buffer)
+    const url = await uploadToR2(buffer, key, file.type)
 
-    // Return the URL path
-    const url = `/uploads/${filename}`
     return NextResponse.json({ url })
   } catch (error) {
+    console.error('Upload error:', error)
     return NextResponse.json({ error: 'Failed to upload file' }, { status: 500 })
   }
 }
