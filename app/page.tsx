@@ -4,6 +4,8 @@ import { CatalogSection } from '@/components/catalog-section'
 import { MobileNav } from '@/components/mobile-nav'
 import { prisma } from '@/lib/prisma'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
   const products = await prisma.product.findMany({
     orderBy: { order: 'asc' }
