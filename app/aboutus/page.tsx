@@ -68,7 +68,7 @@ export default async function AboutUsPage() {
               <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Story</h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  We are a professional footwear materials manufacturer with over 20 years of industry experience, headquartered in Dongguan City, Guangdong Province, China. Since our establishment, we have been dedicated to the research, development, production, and manufacturing of high-quality footwear materials, providing OEM/ODM services to numerous renowned global brands.
+                  We are a professional footwear materials manufacturer with over 20 years of industry experience, headquartered in LuoHe City, HeNan Province, China. Since our establishment, we have been dedicated to the research, development, production, and manufacturing of high-quality footwear materials, providing OEM/ODM services to numerous renowned global brands.
                 </p>
                 <p>
                   With advanced production equipment, strict quality control systems, and a professional team, we can meet the diverse needs of different clients, offering one-stop solutions from design and prototyping to mass production.

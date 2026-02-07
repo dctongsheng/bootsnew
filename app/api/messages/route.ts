@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
     // 验证必填字段
     if (!name || !email || !message) {
       return NextResponse.json(
-        { error: '姓名、邮箱和消息内容为必填项' },
+        { error: 'Name, email and message are required' },
         { status: 400 }
       )
     }
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
       return NextResponse.json(
-        { error: '邮箱格式不正确' },
+        { error: 'Invalid email format' },
         { status: 400 }
       )
     }
@@ -36,13 +36,13 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: '消息已发送，我们会尽快与您联系！',
+      message: 'Message sent! We will contact you as soon as possible.',
       data: savedMessage
     }, { status: 201 })
   } catch (error) {
     console.error('Message submission error:', error)
     return NextResponse.json(
-      { error: '发送失败，请稍后重试' },
+      { error: 'Failed to send, please try again later' },
       { status: 500 }
     )
   }
@@ -56,7 +56,7 @@ export async function GET() {
     return NextResponse.json(messages)
   } catch (error) {
     return NextResponse.json(
-      { error: '获取消息失败' },
+      { error: 'Failed to fetch messages' },
       { status: 500 }
     )
   }
